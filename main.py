@@ -26,19 +26,20 @@ from random import choice
 word_list = ["apple", "car", "python", "github", "xiaomi"]
 key_word = choice(word_list)
 print(key_word)
-number_of_attempts = int(input("Enter number of attempts:"))
+number_of_attempts = int(input("Enter number of attempts: "))
 key_user = "*" * len(key_word)
 print(key_user)
 
 for i in range(0, number_of_attempts):
-    user_answer = input("Enter letter or word")
+    user_answer = input("Enter letter or word: ")
     buf = ""
     if len(user_answer) > 1:
         if user_answer == key_word:
-            print("Вітаю, ви вгадали слово")
+            print("Congratulate, you win!")
+            key_user = key_word
             break
         else:
-            print("слово не правильне")
+            print("Word wrong!")
     elif user_answer in key_word:
         for i in range(0, len(key_word)):
             if key_word[i] == user_answer:
@@ -46,7 +47,13 @@ for i in range(0, number_of_attempts):
             else:
                 buf += key_user[i]
     else:
-        print("Такої літери немає")
+        print(f"Leter '{user_answer}' not in word.")
         buf = key_user
     key_user = buf
+    if key_user == key_word:
+        print("Congratulate, you win!")
+        break
     print(key_user)
+
+if key_user != key_word:
+    print("I'm sorry, you lose")
