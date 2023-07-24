@@ -4,7 +4,8 @@ from random import choice
 def field(key: str, attempts: int):
     key_user = "*" * len(key)
     print(key_user)
-    for i in range(0, attempts):
+    i = 0
+    while i < attempts:
         user_answer = input("Enter letter or word: ").strip().lower()
         if len(user_answer) > 1:
             if user_answer == key:
@@ -14,6 +15,7 @@ def field(key: str, attempts: int):
                 print("Word wrong!")
         elif user_answer in key:
             buf = ""
+            i -= 1
             for j in range(0, len(key)):
                 if key[j] == user_answer:
                     buf += key[j]
@@ -25,7 +27,9 @@ def field(key: str, attempts: int):
         if key_user == key:
             print(f"Congratulates, you win! Right word is: {key_user}")
             return
+        i += 1
         print(key_user)
+
     if key_user != key:
         print("I'm sorry, you lose")
 
