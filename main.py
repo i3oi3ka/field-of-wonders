@@ -3,26 +3,25 @@ from random import choice
 
 def field(key: str, attempts: int):
     key_user = "*" * len(key)
+    print(key_user)
     for i in range(0, attempts):
         user_answer = input("Enter letter or word: ").strip().lower()
-        buf = ""
         if len(user_answer) > 1:
             if user_answer == key:
                 print("Congratulates, you win!")
                 return
             else:
                 print("Word wrong!")
-                buf = key_user
         elif user_answer in key:
+            buf = ""
             for j in range(0, len(key)):
                 if key[j] == user_answer:
                     buf += key[j]
                 else:
                     buf += key_user[j]
+            key_user = buf
         else:
             print(f"Letter '{user_answer}' not in word.")
-            buf = key_user
-        key_user = buf
         if key_user == key:
             print(f"Congratulates, you win! Right word is: {key_user}")
             return
